@@ -1,7 +1,7 @@
 {
-    "name": "anax/page",
+    "name": "anax/content",
     "type": "library",
-    "description": "Anax Page module, wrapper to ease create web pages.",
+    "description": "Anax Content module, filebased flat file content.",
     "keywords": ["boilerplate", "framework", "mvc", "micro", "education"],
     "homepage": "https://dbwebb.se/anax",
     "license": "MIT",
@@ -12,7 +12,7 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/canax/page/issues"
+        "issues": "https://github.com/canax/content/issues"
     },
     "autoload": {
         "psr-4": { 
@@ -26,8 +26,6 @@
     "require-dev": {
         "anax/configure": "^2.0.0@alpha",
         "anax/di": "^2.0.0@alpha",
-        "anax/response": "^2.0.0@alpha",
-        "anax/request": "^2.0.0@alpha",
         "anax/view": "^2.0.0@alpha",
         "phpunit/phpunit": "^7"
     }

@@ -41,5 +41,5 @@ notify:
     webhooks:
         # canax
         - url: https://webhooks.gitter.im/e/c8ff44f50de935adf880
-        # canax/page
-        - url: https://webhooks.gitter.im/e/bc3b7bdf43289a6bb91d
+        # canax/content
+        - url: https://webhooks.gitter.im/e/406ec902f420f0935e7d
