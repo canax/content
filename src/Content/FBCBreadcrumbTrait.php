@@ -5,7 +5,7 @@ namespace Anax\Content;
 /**
  * File Based Content, code for creating breadcrumb.
  */
-trait TFBCBreadcrumb
+trait FBCBreadcrumbTrait
 {
     /**
      * Create a breadcrumb, append slash / to all dirs.

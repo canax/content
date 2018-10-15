@@ -6,7 +6,7 @@ namespace Anax\Content;
  * File Based Content, code for loading additional content into view through
  * data["meta"].
  */
-trait TFBCUtilities
+trait FBCUtilitiesTrait
 {
     /**
      * Support relative routes.

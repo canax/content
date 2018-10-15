@@ -6,7 +6,7 @@ namespace Anax\Content;
  * File Based Content, code for loading additional content into view through
  * data["meta"].
  */
-trait TFBCLoadAdditionalContent
+trait FBCLoadAdditionalContentTrait
 {
     /**
      * Load extra info into views based of meta information provided in each

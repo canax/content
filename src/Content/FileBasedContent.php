@@ -2,16 +2,18 @@
 
 namespace Anax\Content;
 
+use Anax\Commons\ContainerInjectableInterface;
+use Anax\Commons\ContainerInjectableTrait;
+
 /**
  * Pages based on file content.
  */
-class CFileBasedContent
+class FileBasedContent implements ContainerInjectableInterface
 {
-    use \Anax\TConfigure,
-        \Anax\DI\TInjectionAware,
-        TFBCBreadcrumb,
-        TFBCLoadAdditionalContent,
-        TFBCUtilities;
+    use ContainerInjectableTrait,
+        FBCBreadcrumbTrait,
+        FBCLoadAdditionalContentTrait,
+        FBCUtilitiesTrait;
 
 
 

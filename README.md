@@ -13,7 +13,9 @@ Anax Content
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/02a35e2b6e5d09cf3c3e/maintainability)](https://codeclimate.com/github/canax/content/maintainability)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a55f4725232045aa9044630147217f5d)](https://www.codacy.com/app/mosbth/content?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=canax/content&amp;utm_campaign=Badge_Grade)
+<!--
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/067df5c1-e2f6-4f2e-b479-79cfe511ae7c/mini.png)](https://insight.sensiolabs.com/projects/067df5c1-e2f6-4f2e-b479-79cfe511ae7c)
+-->
 
 Anax Content works with filebased content.
 
@@ -22,7 +24,7 @@ Anax Content works with filebased content.
 Usage
 ------------------
 
-Short examples on how to use the module page.
+Short examples on how to use the module.
 
 
 

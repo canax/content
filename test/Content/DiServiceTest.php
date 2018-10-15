@@ -1,10 +1,9 @@
 <?php
 
-namespace Anax\Page;
+namespace Anax\Content;
 
 use Anax\Configure\Configuration;
 use Anax\DI\DIFactoryConfig;
-use Anax\View\ViewCollection;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -24,11 +23,7 @@ class DiServiceTest extends TestCase
         $cfg->setBaseDirectories([ANAX_INSTALL_PATH . "/config"]);
         $di->set("configuration", $cfg);
 
-        $view = new ViewCollection();
-        $view->setPaths([ANAX_INSTALL_PATH . "/vendor/anax/view/view"]);
-        $di->set("view", $view);
-
-        $page = $di->get("page");
-        $this->assertInstanceOf(Page::class, $page);
+        $content = $di->get("content");
+        $this->assertInstanceOf(FileBasedContent::class, $content);
     }
 }
