@@ -1,6 +1,6 @@
 <?php
 
-namespace Anax\Controller;
+namespace Anax\Content;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
