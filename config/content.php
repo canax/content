@@ -14,8 +14,9 @@ return [
 
     // Default options for textfilter to parse frontmatter, step one
     "textfilter-frontmatter" => [
-        "jsonfrontmatter",
-        "yamlfrontmatter",
+        // "jsonfrontmatter",
+        // "yamlfrontmatter",
+        "frontmatter",
     ],
 
     // Additional filters to get title
@@ -34,7 +35,7 @@ return [
     ],
 
     // Default template
-    "template" => "default/article",
+    "template" => "anax/v2/article/default",
 
     // Wrapper for section of revision history
     "revision-history" => [

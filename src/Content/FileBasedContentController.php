@@ -28,17 +28,12 @@ class FileBasedContentController implements ContainerInjectableInterface
     {
         $content = $this->di->get("content");
         $page = $this->di->get("page");
-        
+
         $fileContent = $content->contentForRoute();
         foreach ($fileContent->views as $view) {
             $page->add($view);
         }
-        
-        $page->add("anax/v2/article/default", [
-            "content" => $fileContent->text,
-            "frontmatter" => $fileContent->frontmatter,
-        ]);
-        
+
         return $page->render($fileContent->frontmatter);
     }
 }
