@@ -4,8 +4,8 @@
  */
 return [
     // Use for styling the menu
-    //"basepath" => ANAX_APP_PATH . "/content",
-    "basepath" => ANAX_INSTALL_PATH . "/content",
+    //"basePath" => ANAX_APP_PATH . "/content",
+    "basePath" => ANAX_INSTALL_PATH . "/content",
 
     // Use or ignore using the cache, default is false.
     // During development it might be good to ignore the cache, but not

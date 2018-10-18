@@ -86,9 +86,24 @@ class FileBasedContent implements ContainerInjectableInterface
     /**
      * Set default values from configuration.
      *
+     * @param array $config the configuration to use.
+     *
+     * @return void
+     */
+    public function configure(array $config) : void
+    {
+        $this->config = $config;
+        $this->setDefaultsFromConfiguration();
+    }
+
+
+
+    /**
+     * Set default values from configuration.
+     *
      * @return this.
      */
-    public function setDefaultsFromConfiguration()
+    private function setDefaultsFromConfiguration()
     {
         $this->ignoreCache = isset($this->config["ignoreCache"])
             ? $this->config["ignoreCache"]
@@ -136,7 +151,7 @@ class FileBasedContent implements ContainerInjectableInterface
         if (is_null($index) || $this->ignoreCache) {
             $createMethod = "create$type";
             $index = $this->$createMethod();
-            $cache->put($key, $index);
+            $cache->set($key, $index);
         }
 
         $this->$type = $index;
@@ -154,7 +169,7 @@ class FileBasedContent implements ContainerInjectableInterface
      */
     private function createIndex()
     {
-        $basepath   = $this->config["basepath"];
+        $basepath   = $this->config["basePath"];
         $pattern    = $this->config["pattern"];
         $path       = "$basepath/$pattern";
 
@@ -245,11 +260,11 @@ class FileBasedContent implements ContainerInjectableInterface
      */
     private function createMeta()
     {
-        $basepath = $this->config["basepath"];
+        $basepath = $this->config["basePath"];
         $filter   = $this->config["textfilter-frontmatter"];
         $pattern  = $this->config["meta"];
         $path     = "$basepath/$pattern";
-        $textfilter = $this->di->get("textFilter");
+        $textfilter = $this->di->get("textfilter");
 
         $index = [];
         foreach (glob_recursive($path) as $file) {
@@ -480,14 +495,14 @@ class FileBasedContent implements ContainerInjectableInterface
      */
     private function getFrontmatter($file)
     {
-        $basepath = $this->config["basepath"];
+        $basepath = $this->config["basePath"];
         $filter1  = $this->config["textfilter-frontmatter"];
         $filter2  = $this->config["textfilter-title"];
         $filter = array_merge($filter1, $filter2);
         
         $path = $basepath . "/" . $file;
         $src = file_get_contents($path);
-        $filtered = $this->di->get("textFilter")->parse($src, $filter);
+        $filtered = $this->di->get("textfilter")->parse($src, $filter);
         return $filtered->frontmatter;
     }
 
@@ -720,7 +735,7 @@ class FileBasedContent implements ContainerInjectableInterface
     private function loadFileContentPhaseOne($key)
     {
         // Settings from config
-        $basepath = $this->config["basepath"];
+        $basepath = $this->config["basePath"];
         $filter   = $this->config["textfilter-frontmatter"];
 
         // Whole path to file
@@ -734,7 +749,7 @@ class FileBasedContent implements ContainerInjectableInterface
 
         // Get filtered content
         $src = file_get_contents($path);
-        $filtered = $this->di->get("textFilter")->parse($src, $filter);
+        $filtered = $this->di->get("textfilter")->parse($src, $filter);
 
         return $filtered;
     }
@@ -764,7 +779,7 @@ class FileBasedContent implements ContainerInjectableInterface
             ? $this->config["revision-history"]["source"]
             : null;
 
-        $textFilter = $this->di->get("textFilter");
+        $textFilter = $this->di->get("textfilter");
         $text = $filtered->text;
 
         // Check if revision history is to be included
@@ -842,13 +857,14 @@ class FileBasedContent implements ContainerInjectableInterface
         }
 
         // Check cache for content or create cached version of content
+        $cache = $this->di->get("cache");
         $slug = $this->di->get("url")->slugify($route);
-        $key = $this->di->cache->createKey(__CLASS__, "route-$slug");
-        $content = $this->di->cache->get($key);
+        $key = $cache->createKey(__CLASS__, "route-$slug");
+        $content = $cache->get($key);
 
         if (!$content || $this->ignoreCache) {
             $content = $this->createContentForInternalRoute($route);
-            $this->di->cache->put($key, $content);
+            $cache->set($key, $content);
         }
 
         return $content;

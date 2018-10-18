@@ -39,7 +39,7 @@ trait FBCUtilitiesTrait
     private function processContentPhaseTwo(&$filtered)
     {
         $filter     = $this->config["textfilter"];
-        $textFilter = $this->di->get("textFilter");
+        $textFilter = $this->di->get("textfilter");
 
         // Get new filtered content (and updated frontmatter)
         $new = $textFilter->parse($filtered->text, $filter);
@@ -117,7 +117,7 @@ trait FBCUtilitiesTrait
     private function getDataForAdditionalRoute($route)
     {
          $filter     = $this->config["textfilter"];
-         $textFilter = $this->di->get("textFilter");
+         $textFilter = $this->di->get("textfilter");
 
         // Get filtered content from route
         list($routeIndex, , $filtered) =
@@ -163,7 +163,7 @@ trait FBCUtilitiesTrait
      */
     private function addBaseurl2AnchorUrls(&$filtered, $baseurl)
     {
-        $textf   = $this->di->get("textFilter");
+        $textf   = $this->di->get("textfilter");
         $url     = $this->di->get("url");
         $request = $this->di->get("request");
         $part = $request->getRoute();
@@ -204,7 +204,7 @@ trait FBCUtilitiesTrait
      */
     private function addBaseurl2ImageSource(&$filtered, $baseurl)
     {
-        $textf  = $this->di->get("textFilter");
+        $textf  = $this->di->get("textfilter");
         $url    = $this->di->get("url");
 
         // Use callback to url->create() instead of string concat
@@ -227,7 +227,8 @@ trait FBCUtilitiesTrait
      */
     private function getPublishTime($frontmatter)
     {
-        list(, $date) = $this->di->get("view")->getPublishedDate($frontmatter);
+        //list(, $date) = $this->di->get("view")->getPublishedDate($frontmatter);
+        list(, $date) = \Anax\View\getPublishedDate($frontmatter);
         return strtotime($date);
     }
 }
