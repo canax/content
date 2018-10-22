@@ -4,6 +4,7 @@ namespace Anax\Content;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
+use Anax\Route\Exception\NotFoundException;
 
 /**
  * Pages based on file content.
@@ -584,7 +585,7 @@ class FileBasedContent implements ContainerInjectableInterface
         $msg = t("The route '!ROUTE' does not exists in the index.", [
             "!ROUTE" => $route
         ]);
-        throw new \Anax\Exception\NotFoundException($msg);
+        throw new NotFoundException($msg);
     }
 
 

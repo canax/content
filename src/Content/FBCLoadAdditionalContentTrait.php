@@ -40,6 +40,7 @@ trait FBCLoadAdditionalContentTrait
 
                     case "next-previous":
                         $baseRoute = dirname($routeIndex);
+                        $this->orderToc($baseRoute, $meta);
                         list($next, $previous) = $this->findNextAndPrevious($routeIndex);
                         $views[$id]["data"]["next"] = $next;
                         $views[$id]["data"]["previous"] = $previous;
@@ -166,8 +167,9 @@ trait FBCLoadAdditionalContentTrait
         $previous = null;
         for ($i = $current - 1; $i >= 0; $i--) {
             $isSectionHeader = $values[$i]["sectionHeader"];
+            $isLinkable = $values[$i]["linkable"]; // ?? null;
             $isInternal = $values[$i]["internal"];
-            if ($isSectionHeader || $isInternal) {
+            if (($isSectionHeader && !$isLinkable) || $isInternal) {
                 continue;
             }
             $previous = $values[$i];
@@ -178,8 +180,9 @@ trait FBCLoadAdditionalContentTrait
         $next = null;
         for ($i = $current + 1; $i < $count; $i++) {
             $isSectionHeader = $values[$i]["sectionHeader"];
+            $isLinkable = $values[$i]["linkable"]; // ?? null;
             $isInternal = $values[$i]["internal"];
-            if ($isSectionHeader || $isInternal) {
+            if (($isSectionHeader && !$isLinkable) || $isInternal) {
                 continue;
             }
             $next = $values[$i];
@@ -224,7 +227,7 @@ trait FBCLoadAdditionalContentTrait
             }
                 return -$asc;
         });
-        
+
         $this->meta[$baseRoute]["__toc__"] = $toc;
     }
 

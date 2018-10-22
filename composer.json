@@ -21,7 +21,8 @@
     },
     "require": {
         "php": ">=7.2",
-        "anax/commons": "^2.0.0@alpha"
+        "anax/commons": "^2.0.0@alpha",
+        "anax/router": "^2.0.0@alpha"
     },
     "require-dev": {
         "anax/configure": "^2.0.0@alpha",
