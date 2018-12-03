@@ -31,7 +31,7 @@ trait FBCLoadAdditionalContentTrait
                 switch ($meta["type"]) {
                     case "article-toc":
                         $content = $views["main"]["data"]["content"];
-                        $views[$id]["data"]["articleToc"] = $this->di->textFilter->createToc($content);
+                        $views[$id]["data"]["articleToc"] = $this->di->get("textfilter")->createToc($content);
                         break;
 
                     case "breadcrumb":
