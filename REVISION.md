@@ -7,6 +7,7 @@ v2.0.0-beta.5 (2018-12-03)
 ---------------------------------
 
 * Fix reference to $this->di textfilter in FBCLoadAdditionalContentTrait.
+* Fix "toc" to be sortable, to use in blog.
 
 
 
